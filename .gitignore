@@ -1,0 +1,7 @@
+node_modules/
+.env
+output/archive/
+apify_storage/
+*.log
+
+output/latest/

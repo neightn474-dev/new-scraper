@@ -1,0 +1,58 @@
+{
+  "title": "Hiring intelligence scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "careerPageUrls": {
+      "title": "Company career page URLs",
+      "type": "array",
+      "description": "Public Greenhouse, Lever, Ashby, or company career URLs to inspect.",
+      "editor": "stringList",
+      "prefill": [
+        "https://jobs.ashbyhq.com/anthropic",
+        "https://jobs.lever.co/netlify",
+        "https://boards.greenhouse.io/stripe"
+      ]
+    },
+    "discoverySources": {
+      "title": "Discovery sources",
+      "type": "object",
+      "description": "Public no-key discovery feeds. Government/exam-based sources are intentionally unsupported.",
+      "editor": "json",
+      "prefill": {
+        "remoteok": true,
+        "arbeitnow": true,
+        "hackerNews": false
+      }
+    },
+    "excludeMiddleEast": {
+      "title": "Exclude Middle East records",
+      "type": "boolean",
+      "description": "Hard-filter companies and roles with Middle East HQ/location signals before final output.",
+      "default": true
+    },
+    "maxJobsPerSource": {
+      "title": "Max jobs per source",
+      "type": "integer",
+      "description": "Safety cap for each source adapter.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "requestDelayMs": {
+      "title": "Delay between public requests",
+      "type": "integer",
+      "description": "Conservative delay to avoid hammering public sources.",
+      "default": 1500,
+      "minimum": 250,
+      "maximum": 10000
+    },
+    "contactEmail": {
+      "title": "Contact email for User-Agent",
+      "type": "string",
+      "description": "Optional responsible-contact email included in the User-Agent header.",
+      "editor": "textfield"
+    }
+  },
+  "required": []
+}

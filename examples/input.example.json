@@ -1,0 +1,16 @@
+{
+  "careerPageUrls": [
+    "https://jobs.ashbyhq.com/anthropic",
+    "https://jobs.lever.co/netlify",
+    "https://boards.greenhouse.io/stripe"
+  ],
+  "discoverySources": {
+    "remoteok": true,
+    "arbeitnow": true,
+    "hackerNews": false
+  },
+  "excludeMiddleEast": true,
+  "maxJobsPerSource": 100,
+  "requestDelayMs": 1500,
+  "contactEmail": "ops@example.com"
+}

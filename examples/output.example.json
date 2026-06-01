@@ -1,0 +1,11 @@
+{
+  "generated_at": "example-run-generated-by-scraper",
+  "note": "Run npm run scrape or Apify Actor to generate real records from public endpoints. This file documents the output envelope without fabricated job data.",
+  "companies": [],
+  "jobs": [],
+  "manifest": {
+    "status": "not_run",
+    "sources": {},
+    "excluded_regions": ["Middle East"]
+  }
+}
