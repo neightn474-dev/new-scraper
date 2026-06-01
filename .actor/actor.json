@@ -1,0 +1,12 @@
+{
+  "actorSpecification": 1,
+  "name": "hiring-intel-scraper",
+  "title": "Hiring Intelligence Scraper",
+  "description": "Collects public private-sector hiring signals from no-key sources, excludes Middle East records, and exports JSON/CSV/Markdown.",
+  "version": "0.1",
+  "meta": {
+    "templateId": "node-js"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "../Dockerfile"
+}

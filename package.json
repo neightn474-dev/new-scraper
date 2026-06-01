@@ -1,0 +1,27 @@
+{
+  "name": "hiring-intel-scraper",
+  "version": "0.1.0",
+  "description": "Apify-ready public hiring and company intelligence scraper with provenance and Middle East exclusion.",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "scrape": "node src/main.js",
+    "check": "node --check src/main.js && node --check src/adapters/ats.js && node --check src/adapters/discovery.js && node --check src/enrichment/company.js && node --check src/filters/middle-east.js && node --check src/io/exporters.js && node --check src/lib/http.js && node --check src/lib/normalize.js && node --check src/lib/apify-runtime.js && node --check src/enrichment/website-resolver.js && node --check src/enrichment/employee-range.js"
+  },
+  "dependencies": {
+    "apify": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "apify",
+    "jobs",
+    "scraper",
+    "greenhouse",
+    "lever",
+    "ashby"
+  ],
+  "license": "MIT"
+}
