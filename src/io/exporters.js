@@ -12,8 +12,15 @@ export async function writeLocalOutputs({ jobs, companies, manifest }, outputDir
 
 export async function writeApifyOutputs(actor, { jobs, companies, manifest }) {
   if (!actor) return;
-  for (const job of jobs) await actor.pushData({ record_type: 'job', ...job });
-  for (const company of companies) await actor.pushData({ record_type: 'company', ...company });
+
+  for (const job of jobs) {
+    await actor.pushData({ record_type: 'job', ...job });
+  }
+
+  for (const company of companies) {
+    await actor.pushData({ record_type: 'company', ...company });
+  }
+
   await actor.setValue('jobs.json', jobs, { contentType: 'application/json' });
   await actor.setValue('companies.json', companies, { contentType: 'application/json' });
   await actor.setValue('run_manifest.json', manifest, { contentType: 'application/json' });
@@ -24,16 +31,20 @@ export async function writeApifyOutputs(actor, { jobs, companies, manifest }) {
 
 export function toCsv(rows) {
   if (!rows.length) return '';
+
   const headers = [...new Set(rows.flatMap((row) => Object.keys(row)))];
   const lines = [headers.join(',')];
+
   for (const row of rows) {
     lines.push(headers.map((key) => csvCell(row[key])).join(','));
   }
+
   return `${lines.join('\n')}\n`;
 }
 
 function csvCell(value) {
   if (value == null) return '';
+
   const text = typeof value === 'object' ? JSON.stringify(value) : String(value);
   return `"${text.replace(/"/g, '""')}"`;
 }
@@ -79,13 +90,27 @@ function toMarkdownReport({ jobs, companies, manifest }) {
     '| Company | Jobs | Website | Employees | Industry | Hiring intent |',
     '|---|---:|---|---|---|---|',
   ];
+
   for (const company of companies.slice(0, 50)) {
-    lines.push(`| ${escapeMd(company.name?.value)} | ${company.job_ids?.length || 0} | ${escapeMd(company.website_url?.value)} | ${escapeMd(company.employee_range?.label)} | ${escapeMd(company.industry?.value)} | ${escapeMd(company.hiring_intent_summary?.value)} |`);
+    lines.push(
+      `| ${escapeMd(company.name?.value)} | ${company.job_ids?.length || 0} | ${escapeMd(company.website_url?.value)} | ${escapeMd(company.employee_range?.label)} | ${escapeMd(company.industry?.value)} | ${escapeMd(company.hiring_intent_summary?.value)} |`
+    );
   }
-  lines.push('', '## Recent Jobs', '', '| Company | Website | Employees | Title | Location | Source | URL |', '|---|---|---|---|---|---|---|');
+
+  lines.push(
+    '',
+    '## Recent Jobs',
+    '',
+    '| Company | Website | Employees | Title | Location | Source | URL |',
+    '|---|---|---|---|---|---|---|'
+  );
+
   for (const job of jobs.slice(0, 100)) {
-    lines.push(`| ${escapeMd(job.company_name)} | ${escapeMd(job.company_website_url)} | ${escapeMd(job.company_employee_range_label)} | ${escapeMd(job.title)} | ${escapeMd(job.location)} | ${escapeMd(job.source)} | ${job.job_url} |`);
+    lines.push(
+      `| ${escapeMd(job.company_name)} | ${escapeMd(job.company_website_url)} | ${escapeMd(job.company_employee_range_label)} | ${escapeMd(job.title)} | ${escapeMd(job.location)} | ${escapeMd(job.source)} | ${job.job_url} |`
+    );
   }
+
   return `${lines.join('\n')}\n`;
 }
 

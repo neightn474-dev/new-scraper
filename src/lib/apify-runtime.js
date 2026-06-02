@@ -3,6 +3,7 @@ import path from 'node:path';
 
 export async function getActorRuntime() {
   if (process.env.APIFY_IS_AT_HOME !== '1') return localActorFallback();
+
   try {
     const { Actor } = await import('apify');
     return Actor;
@@ -17,6 +18,7 @@ function localActorFallback() {
     async exit() {},
     async getInput() {
       if (process.env.APIFY_INPUT) return JSON.parse(process.env.APIFY_INPUT);
+
       try {
         return JSON.parse(await fs.readFile('INPUT.json', 'utf8'));
       } catch {
