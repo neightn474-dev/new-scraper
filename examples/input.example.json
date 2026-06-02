@@ -12,5 +12,27 @@
   "excludeMiddleEast": true,
   "maxJobsPerSource": 100,
   "requestDelayMs": 1500,
-  "contactEmail": "ops@example.com"
+  "contactEmail": "ops@example.com",
+  "respectRobotsTxt": true,
+  "maxCompaniesToEnrich": 50,
+  "employeeRangeFilter": {
+    "enabled": true,
+    "minEmployees": 50,
+    "maxEmployees": 100,
+    "matchMode": "overlap",
+    "unknownCompanySizePolicy": "exclude",
+    "minimumConfidence": "medium"
+  },
+  "websiteDiscovery": {
+    "enabled": true,
+    "fetchCareerPageLinks": true,
+    "fetchJobDescriptionLinks": true,
+    "useWikidata": true
+  },
+  "employeeRangeDiscovery": {
+    "enabled": true,
+    "useCompanyWebsite": true,
+    "useWikidata": true,
+    "maxPagesPerCompany": 4
+  }
 }

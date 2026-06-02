@@ -1,11 +1,54 @@
 {
   "generated_at": "example-run-generated-by-scraper",
-  "note": "Run npm run scrape or Apify Actor to generate real records from public endpoints. This file documents the output envelope without fabricated job data.",
+  "note": "Run npm run scrape or the Apify Actor to generate real records from public endpoints. This file documents the output envelope and key enriched fields without fabricated job data.",
   "companies": [],
   "jobs": [],
   "manifest": {
     "status": "not_run",
     "sources": {},
-    "excluded_regions": ["Middle East"]
+    "excluded_regions": [
+      "Middle East"
+    ],
+    "output_fields": {
+      "company_fields": [
+        "company_id",
+        "name",
+        "website_url",
+        "website_url.source",
+        "website_url.source_url",
+        "website_url.confidence",
+        "website_url.candidate_score",
+        "website_url.reasons",
+        "employee_range",
+        "employee_range.min",
+        "employee_range.max",
+        "employee_range.label",
+        "employee_range.source",
+        "employee_range.source_url",
+        "employee_range.confidence",
+        "employee_range.extracted_text"
+      ],
+      "job_fields": [
+        "job_id",
+        "company_name",
+        "company_website_url",
+        "company_website_url_source",
+        "company_website_url_confidence",
+        "company_employee_min",
+        "company_employee_max",
+        "company_employee_range_label",
+        "company_employee_range_source",
+        "company_employee_range_confidence"
+      ],
+      "manifest_fields": [
+        "status",
+        "sources",
+        "excluded_middle_east_count",
+        "employee_range_excluded_company_count",
+        "employee_range_excluded_job_count",
+        "deduped_count",
+        "validation"
+      ]
+    }
   }
 }

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/main.js",
     "scrape": "node src/main.js",
-    "check": "node --check src/main.js && node --check src/adapters/ats.js && node --check src/adapters/discovery.js && node --check src/enrichment/company.js && node --check src/filters/middle-east.js && node --check src/io/exporters.js && node --check src/lib/http.js && node --check src/lib/normalize.js && node --check src/lib/apify-runtime.js"
+    "check": "node --check src/main.js && node --check src/adapters/ats.js && node --check src/adapters/discovery.js && node --check src/enrichment/company.js && node --check src/filters/middle-east.js && node --check src/io/exporters.js && node --check src/lib/http.js && node --check src/lib/normalize.js && node --check src/lib/apify-runtime.js && node --check src/enrichment/website-resolver.js && node --check src/enrichment/employee-range.js"
   },
   "dependencies": {
     "apify": "^3.4.0"

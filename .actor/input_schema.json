@@ -52,6 +52,58 @@
       "type": "string",
       "description": "Optional responsible-contact email included in the User-Agent header.",
       "editor": "textfield"
+    },
+    "respectRobotsTxt": {
+      "title": "Respect robots.txt",
+      "type": "boolean",
+      "description": "Check robots.txt before fetching public company/career pages for enrichment. API endpoints are still fetched directly.",
+      "default": true
+    },
+    "maxCompaniesToEnrich": {
+      "title": "Max companies to enrich",
+      "type": "integer",
+      "description": "Safety cap for website and employee-range enrichment calls per run.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 500
+    },
+    "employeeRangeFilter": {
+      "title": "Employee range filter",
+      "type": "object",
+      "description": "Filter companies by automatically discovered employee range. Unknown sizes are excluded by default when enabled.",
+      "editor": "json",
+      "prefill": {
+        "enabled": false,
+        "minEmployees": 50,
+        "maxEmployees": 100,
+        "matchMode": "overlap",
+        "unknownCompanySizePolicy": "exclude",
+        "minimumConfidence": "medium"
+      }
+    },
+    "websiteDiscovery": {
+      "title": "Website discovery",
+      "type": "object",
+      "description": "Automatically resolve company website URLs from career pages, job descriptions, and Wikidata. No Google scraping is used.",
+      "editor": "json",
+      "prefill": {
+        "enabled": true,
+        "fetchCareerPageLinks": true,
+        "fetchJobDescriptionLinks": true,
+        "useWikidata": true
+      }
+    },
+    "employeeRangeDiscovery": {
+      "title": "Employee range discovery",
+      "type": "object",
+      "description": "Automatically discover employee ranges from company websites and Wikidata; ranges include source URL and confidence.",
+      "editor": "json",
+      "prefill": {
+        "enabled": true,
+        "useCompanyWebsite": true,
+        "useWikidata": true,
+        "maxPagesPerCompany": 4
+      }
     }
   },
   "required": []
