@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 export async function getActorRuntime() {
-  if (process.env.APIFY_INPUT && process.env.APIFY_IS_AT_HOME !== '1') return localActorFallback();
+  if (process.env.APIFY_IS_AT_HOME !== '1') return localActorFallback();
   try {
     const { Actor } = await import('apify');
     return Actor;
