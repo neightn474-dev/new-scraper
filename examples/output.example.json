@@ -1,0 +1,43 @@
+{
+  "generated_at": "example-run-generated-by-scraper",
+  "note": "Schema-only placeholder showing output fields. Run the Apify Actor to generate real records from public endpoints.",
+  "companies": [
+    {
+      "company_id": "example",
+      "name": { "value": "Example Company", "confidence": "medium" },
+      "website_url": {
+        "value": "https://example.com",
+        "source": "career_page_outbound_link",
+        "source_url": "https://jobs.example.com",
+        "confidence": "high",
+        "candidate_score": 0.9,
+        "reasons": ["domain_contains_company_name", "root_domain"]
+      },
+      "employee_range": {
+        "min": 51,
+        "max": 100,
+        "label": "51-100",
+        "source": "company_website",
+        "source_url": "https://example.com/about",
+        "confidence": "high",
+        "extracted_text": "51-100 employees"
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "job_id": "example:job",
+      "company_name": "Example Company",
+      "company_website_url": "https://example.com",
+      "company_employee_min": 51,
+      "company_employee_max": 100,
+      "company_employee_range_label": "51-100"
+    }
+  ],
+  "manifest": {
+    "status": "example",
+    "sources": {},
+    "excluded_regions": ["Middle East"],
+    "employee_range_excluded_company_count": 0
+  }
+}

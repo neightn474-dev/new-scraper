@@ -1,0 +1,110 @@
+{
+  "title": "Hiring intelligence scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "careerPageUrls": {
+      "title": "Company career page URLs",
+      "type": "array",
+      "description": "Public Greenhouse, Lever, Ashby, or company career URLs to inspect.",
+      "editor": "stringList",
+      "prefill": [
+        "https://jobs.ashbyhq.com/anthropic",
+        "https://jobs.lever.co/netlify",
+        "https://boards.greenhouse.io/stripe"
+      ]
+    },
+    "discoverySources": {
+      "title": "Discovery sources",
+      "type": "object",
+      "description": "Public no-key discovery feeds. Government/exam-based sources are intentionally unsupported.",
+      "editor": "json",
+      "prefill": {
+        "remoteok": true,
+        "arbeitnow": true,
+        "hackerNews": false
+      }
+    },
+    "excludeMiddleEast": {
+      "title": "Exclude Middle East records",
+      "type": "boolean",
+      "description": "Hard-filter companies and roles with Middle East HQ/location signals before final output.",
+      "default": true
+    },
+    "maxJobsPerSource": {
+      "title": "Max jobs per source",
+      "type": "integer",
+      "description": "Safety cap for each source adapter.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "requestDelayMs": {
+      "title": "Delay between public requests",
+      "type": "integer",
+      "description": "Conservative delay to avoid hammering public sources.",
+      "default": 1500,
+      "minimum": 250,
+      "maximum": 10000
+    },
+    "contactEmail": {
+      "title": "Contact email for User-Agent",
+      "type": "string",
+      "description": "Optional responsible-contact email included in the User-Agent header.",
+      "editor": "textfield"
+    },
+    "respectRobotsTxt": {
+      "title": "Respect robots.txt",
+      "type": "boolean",
+      "description": "Check robots.txt before fetching public company/career pages for enrichment. API endpoints are still fetched directly.",
+      "default": true
+    },
+    "maxCompaniesToEnrich": {
+      "title": "Max companies to enrich",
+      "type": "integer",
+      "description": "Safety cap for website and employee-range enrichment calls per run.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 500
+    },
+    "employeeRangeFilter": {
+      "title": "Employee range filter",
+      "type": "object",
+      "description": "Filter companies by automatically discovered employee range. Unknown sizes are excluded by default when enabled.",
+      "editor": "json",
+      "prefill": {
+        "enabled": false,
+        "minEmployees": 50,
+        "maxEmployees": 100,
+        "matchMode": "overlap",
+        "unknownCompanySizePolicy": "exclude",
+        "minimumConfidence": "medium"
+      }
+    },
+    "websiteDiscovery": {
+      "title": "Website discovery",
+      "type": "object",
+      "description": "Automatically resolve company website URLs from career pages, job descriptions, and Wikidata. No Google scraping is used.",
+      "editor": "json",
+      "prefill": {
+        "enabled": true,
+        "fetchCareerPageLinks": true,
+        "fetchJobDescriptionLinks": true,
+        "useWikidata": true
+      }
+    },
+    "employeeRangeDiscovery": {
+      "title": "Employee range discovery",
+      "type": "object",
+      "description": "Automatically discover employee ranges from company websites and Wikidata; ranges include source URL and confidence.",
+      "editor": "json",
+      "prefill": {
+        "enabled": true,
+        "useCompanyWebsite": true,
+        "useWikidata": true,
+        "maxPagesPerCompany": 4
+      }
+    }
+  },
+  "required": []
+}
